@@ -1,0 +1,33 @@
+<section id="pricing" class="pricing-content section-padding">
+	<div class="container">					
+		<div class="section-title text-center">
+			<h2>Cars</h2>
+		</div>				
+		<div class="row text-center">									
+			<div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0" style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeInUp;" 
+            *ngFor="let car of Cars">
+				<div class="pricing_design">
+					<div class="single-pricing">
+						<div class="price-head">		
+							<h2>{{car.id}}</h2>
+							<h1>$0</h1>
+							<span>/Monthly</span>
+						</div>
+						<ul>
+							<li><b>matricule</b> {{car.matricule}}</li>
+							<li><b>permition</b> {{car.permition}}</li>
+							<li><b>visite</b> {{car.visite}}</li>
+							<li><b>assurance</b> {{car.assurance}}</li>
+							<li><b>vignette</b> {{car.vignette}}</li>
+							<li><b>secteur</b> {{car.secteur}}</li>
+						</ul>
+						<div class="pricing-price">
+							
+						</div>
+						<a href="" class="price_btn">Order Now</a>
+					</div>
+				</div>
+			</div><!--- END COL -->			  
+		</div><!--- END ROW -->
+	</div><!--- END CONTAINER -->
+</section>

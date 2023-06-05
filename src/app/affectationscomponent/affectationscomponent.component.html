@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+<section class="section">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" style="color:white;">driver</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+           <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                 <a class="nav-link"  >Set Affectation <span class="sr-only">(current)</span></a>
+              </li>
+           </ul>
+        </div>
+      </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="align-items-center row">
+                    <div class="col-lg-8">
+                        <div class="mb-3 mb-lg-0"><h6 class="fs-16 mb-0">Showing 1 – 8 of 11 results</h6></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="candidate-list-widgets">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="selection-widget">
+                                        <select class="form-select" data-trigger="true" name="choices-single-filter-orderby" id="choices-single-filter-orderby" aria-label="Default select example">
+                                            <option value="df">Default</option>
+                                            <option value="ne">Newest</option>
+                                            <option value="od">Oldest</option>
+                                            <option value="rd">Random</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="selection-widget mt-2 mt-lg-0">
+                                        <select class="form-select" data-trigger="true" name="choices-candidate-page" id="choices-candidate-page" aria-label="Default select example">
+                                            <option value="df">All</option>
+                                            <option value="ne">8 per Page</option>
+                                            <option value="ne">12 per Page</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="candidate-list">
+                    <div class="candidate-list-box card mt-4" *ngFor="let affectation of Affectations">
+                        <div class="p-4 card-body">
+                            <div class="align-items-center row">
+                                <div class="col-lg-5">
+                                    <h5 class="fs-19 mb-0">
+                                        <a class="primary-link" href="">{{affectation.id}}</a>
+                                    </h5>
+                                    <div class="candidate-list-content mt-3 mt-lg-0">
+                                        <p class="text-muted mb-2">{{affectation.id_car}}</p>
+                                        <p class="text-muted mb-2">{{affectation.id_rider}}</p>
+                                        <ul class="list-inline mb-0 text-muted">
+                                            <li class="list-inline-item"><i class="mdi mdi-map-marker"></i> {{affectation.date_debut}}</li>
+                                            ---
+                                            <li class="list-inline-item"><i class="mdi mdi-wallet"></i> {{affectation.date_fin}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Edit</button>
+                                <button class="btn btn-danger" data-dismiss="modal">Delete</button>
+                             </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
