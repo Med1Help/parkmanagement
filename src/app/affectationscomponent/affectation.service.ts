@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Affectation} from './affectation'
 import {myObject} from '../myObject'
 @Injectable({
@@ -8,13 +8,27 @@ import {myObject} from '../myObject'
 })
 export class AffectationService{
     private apiServerUrl = 'http://localhost:3001';
-
+    private secteur : string | null;
+    private headers : HttpHeaders;
     constructor(private http: HttpClient){
+        if(sessionStorage.getItem("secteur") == null){
+            this.secteur = "";
+        }else{
+            this.secteur = sessionStorage.getItem("secteur");
+        }
+        console.log("thisis the sec from app component: "+this.secteur );
+        this.headers = new HttpHeaders({
+            'Content-Type'                  : 'application/json',
+            'secteur'                       : this.secteur!,
+            'Access-Control-Allow-Origin'   : 'http://localhost:4200',
+            'Access-Control-Allow-Credentials' : "true",
 
+
+        });
     }
 
     public getAffectations(): Observable<Affectation[]>{
-        return this.http.get<Affectation[]>(this.apiServerUrl+'/affectation/allaffectations');
+        return this.http.get<Affectation[]>(this.apiServerUrl+'/affectation/allaffectations',{headers:this.headers});
     }
     // public getAffectation(myObj : myObject): Observable<Affectation[]>{
     //     return this.http.post<Affectation[]>(this.apiServerUrl+'/affectation/Affectation',myObj);
