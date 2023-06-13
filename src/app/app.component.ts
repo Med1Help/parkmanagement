@@ -14,10 +14,12 @@ export class AppComponent implements OnInit{
   public managers : Manager[] | undefined;
   public editManager : Manager | undefined;
   public title = ""; 
+
   constructor (private managerService : ManagerService , private router:Router){}
   
   ngOnInit(): void {
     this.getManagers();
+
   }
 
   public hasRoute(route:string){

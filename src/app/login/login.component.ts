@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/AuthService';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { LoginResp } from './LoginResp';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,8 +18,9 @@ export class LoginComponent {
   successMessage: string | undefined;
   invalidLogin = false;
   loginSuccess = false;
-
-  constructor(private router:Router){
+  apiServerUrl : string = "http://localhost:3001";
+  loginResp     : LoginResp|undefined;
+  constructor(private router:Router, private http: HttpClient){
     
   }
 
@@ -25,9 +28,19 @@ export class LoginComponent {
   }
 
   public handleLogin(form : NgForm):void{
-    sessionStorage.setItem("secteur",form.value['secteur']);
-    sessionStorage.setItem("username",form.value['username']);
+    
+    this.http.post<LoginResp>(this.apiServerUrl+'/user/login',{"e_mail":form.value['username'],"password":form.value['password']}).subscribe(
+      (response) => {
+        this.loginResp = response;
+        sessionStorage.setItem("secteur",this.loginResp!.secteur.charAt(3));
+        sessionStorage.setItem("token",this.loginResp!.token);
+        window.location.href = 'http://localhost:4200/';
+      },
+      (error) => {
+        console.log(error.message)
+      }
+    );
     console.log("login clicked: "+form.value['secteur']);
-    window.location.href = 'http://localhost:4200/';
+    
   }
 }

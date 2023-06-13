@@ -4,6 +4,10 @@ import { AffectationService } from './affectation.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { myObjService } from '../manager.service';
 import { NgForm } from '@angular/forms';
+import { Car } from '../carscomponent/car';
+import { CarService } from '../carscomponent/car.service'
+import { Driver } from '../driverscomponent/driver';
+import { DriverService } from '../driverscomponent/driver.service';
 
 @Component({
   selector: 'AffectationscomponentComponent',
@@ -13,11 +17,38 @@ import { NgForm } from '@angular/forms';
 export class AffectationscomponentComponent {
   public Affectations : Affectation[] | undefined;
   public editAffectation : Affectation | undefined;
+  public Cars : Car[] | undefined; 
+  public drivers : Driver[] | undefined;
+  public secteur : string ="not yet";
 
-  constructor(private AffectationService : AffectationService ){}
+  constructor(private AffectationService : AffectationService , private CarService : CarService , private driverService : DriverService ){}
   ngOnInit(): void {
+    this.secteur = this.AffectationService.getSec();
     this.getAffectations();
+    this.getCars();
+    this.getDrivers();
   }
+  public getDrivers():void{
+    this.driverService.getDrivers().subscribe(
+      (response:Driver[])=>{
+        this.drivers = response;
+      },
+      (error : HttpErrorResponse)=>{
+        console.log(error.message);
+      }
+    );
+
+  }
+  public getCars() : void{
+    this.CarService.getCars().subscribe(
+     (response : Car[]) =>{
+       this.Cars = response;
+     },
+     (error : HttpErrorResponse) =>{
+       alert(error.message);
+     }
+    )
+ }
   public getAffectations():void{
     this.AffectationService.getAffectations().subscribe(
       (response:Affectation[])=>{
@@ -57,8 +88,9 @@ export class AffectationscomponentComponent {
     );
   }
   public onAddAffectation(form : NgForm) : void{
-    const closeButt = document.getElementById('add-Affectation-form') ;
+    const closeButt = document.getElementById('add-affectation-form') ;
     closeButt!.click();
+    // console.log(form.value);
     this.AffectationService.addAffectation(form.value).subscribe(
       (response:Affectation) => {
         console.log(response);

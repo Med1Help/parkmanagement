@@ -4,4 +4,5 @@ export interface Affectation{
     id_rider    : number;
     date_debut  : Date;
     date_fin    : Date;
+    secteur     : string;
 }

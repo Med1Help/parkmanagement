@@ -26,6 +26,9 @@ export class AffectationService{
 
         });
     }
+    public getSec():string{
+        return this.secteur!;
+    }
 
     public getAffectations(): Observable<Affectation[]>{
         return this.http.get<Affectation[]>(this.apiServerUrl+'/affectation/allaffectations',{headers:this.headers});

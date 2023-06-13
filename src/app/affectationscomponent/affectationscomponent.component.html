@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarColor02">
            <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                 <a class="nav-link" >Set Affectation <span class="sr-only">(current)</span></a>
+                 <a class="nav-link" (click)="onOpenModal('add')" >Set Affectation <span class="sr-only">(current)</span></a>
               </li>
            </ul>
         </div>
@@ -76,4 +76,48 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="addAffectationModal" tabindex="-1" role="dialog" aria-labelledby="addAffectationModalLabel" aria-hidden="true" >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+             <div class="modal-header">
+                <h5 class="modal-title" id="addEmployeeModalLabel">Add Affectation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+             </div>
+             <div class="modal-body">
+                <form #addForm="ngForm" (ngSubmit)="onAddAffectation(addForm)">
+                <div class="form-group">
+                   <label for="id_car">Car</label>
+                   <select ngModel name="id_car">
+                    <option *ngFor="let car of Cars" value="{{car.id}}" name="id_car"> {{car.id}} </option>
+                   </select>
+                </div>
+                <div class="form-group">
+                   <label for="id_rider">Rider</label>
+                   <select ngModel name="id_rider">
+                    <option *ngFor="let rider of drivers" name="id_rider" value="{{rider.id}}">{{rider.id}}</option>
+                   </select>
+                </div>
+                <div class="form-group">
+                   <label for="date_debut">Date Debut: </label>
+                   <input type="date" ngModel name="date_debut" class="form-control" id="date_debut" required>
+                </div>
+                <div class="form-group">
+                    <label for="date_fin">Date Fin: </label>
+                    <input type="date" ngModel name="date_fin" class="form-control" id="date_fin"  required>
+                </div>
+                <div class="form-group">
+                    <label for="secteur">Secteur: {{secteur}} </label>
+                    <input type="text" ngModel="sec{{secteur}}" name="secteur" class="form-control"   id="secteur" >
+                </div>
+                <div class="modal-footer">
+                   <button type="button" id="add-affectation-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                   <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Add Affectation</button>
+                </div>
+                </form>
+             </div>
+          </div>
+        </div>
+        </div> 
 </section>

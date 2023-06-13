@@ -9,6 +9,7 @@ import { CarscomponentComponent } from './carscomponent/carscomponent.component'
 import { AffectationscomponentComponent } from './affectationscomponent/affectationscomponent.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes} from '@angular/router';
+import { IgxComboModule } from 'igniteui-angular';
 
 const appRoutes: Routes = [ 
   {path: '' , component: AppComponent},
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
     LoginComponent
   ],
   imports: [
+    IgxComboModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
