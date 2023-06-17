@@ -34,6 +34,7 @@ export class LoginComponent {
         this.loginResp = response;
         sessionStorage.setItem("secteur",this.loginResp!.secteur.charAt(3));
         sessionStorage.setItem("token",this.loginResp!.token);
+        sessionStorage.setItem("role",this.loginResp!.role);
         window.location.href = 'http://localhost:4200/';
       },
       (error) => {

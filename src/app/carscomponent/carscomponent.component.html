@@ -1,3 +1,16 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" style="color:white;">driver</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+       <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+             <a class="nav-link" (click)="onOpenModal('add')" >Add Cars <span class="sr-only">(current)</span></a>
+          </li>
+       </ul>
+    </div>
+  </nav>
 <section id="pricing" class="pricing-content section-padding">
 	<div class="container">					
 		<div class="section-title text-center">
@@ -8,26 +21,82 @@
             *ngFor="let car of Cars">
 				<div class="pricing_design">
 					<div class="single-pricing">
-						<div class="price-head">		
-							<h2>{{car.id}}</h2>
-							<h1>$0</h1>
-							<span>/Monthly</span>
+						<div class="price-head">
+							<h2>Car {{car.id}}</h2>
 						</div>
 						<ul>
-							<li><b>matricule</b> {{car.matricule}}</li>
-							<li><b>permition</b> {{car.permition}}</li>
-							<li><b>visite</b> {{car.visite}}</li>
-							<li><b>assurance</b> {{car.assurance}}</li>
-							<li><b>vignette</b> {{car.vignette}}</li>
-							<li><b>secteur</b> {{car.secteur}}</li>
+							<li><b>matricule </b> {{car.matricule}}</li>
+							<li><b>permition </b><span [ngStyle]="{'color': car.permition === 'V' || car.permition === 'v' ? 'rgb(0, 91, 14)' : 'red'}" ><b *ngIf="car.permition === 'V'">Validé</b><b *ngIf="car.permition === 'F'">Perimeé</b></span> </li>
+							<li><b>visite </b><span [ngStyle]="{'color': car.visite === 'V' || car.visite === 'v' ? 'rgb(0, 91, 14)' : 'red'}" ><b *ngIf="car.visite === 'V'">Validé</b><b *ngIf="car.visite === 'F'">Perimeé</b></span> </li>
+							<li><b>assurance </b><span [ngStyle]="{'color': car.assurance === 'V' || car.assurance === 'v' ? 'rgb(0, 91, 14)' : 'red'}" ><b *ngIf="car.assurance === 'V'">Validé</b><b *ngIf="car.assurance === 'F'">Perimeé</b></span></li>
+							<li><b>vignette </b><span [ngStyle]="{'color': car.vignette === 'V' || car.vignette === 'v' ? 'rgb(0, 91, 14)' : 'red'}" ><b *ngIf="car.vignette === 'V'">Validé</b><b *ngIf="car.vignette === 'F'">Perimeé</b></span> </li>
+							<li><b >secteur </b>{{car.secteur}}</li>
 						</ul>
 						<div class="pricing-price">
 							
 						</div>
-						<a href="" class="price_btn">Order Now</a>
 					</div>
 				</div>
 			</div><!--- END COL -->			  
 		</div><!--- END ROW -->
 	</div><!--- END CONTAINER -->
 </section>
+<div class="modal fade" id="addCarModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		 <div class="modal-header">
+			<h5 class="modal-title" id="addEmployeeModalLabel">Add driver</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		 </div>
+		 <div class="modal-body">
+			<form #addForm="ngForm" (ngSubmit)="onAddCar(addForm)">
+			<div class="form-group">
+			   <label for="name">matricule</label>
+			   <input type="text" ngModel name="matricule" class="form-control" id="name" placeholder="Name" required>
+			</div>
+			<div class="form-group">
+			   <label for="email">permition</label>
+			   <select ngModel name="permition" >
+				<option value="V" name="permition">Valide</option>
+				<option value="F" name="permition">expiré</option>
+			   </select>
+			</div>
+			<div class="form-group">
+			   <label for="phone">visite</label>
+			   <select ngModel name="visite" >
+				<option value="V" name="visite">Valide</option>
+				<option value="F" name="visite">expiré</option>
+			   </select>
+			</div>
+			<div class="form-group">
+				<label for="phone">assurance</label>
+				<select ngModel name="assurance" >
+					<option value="V" name="assurance">Valide</option>
+					<option value="F" name="assurance">expiré</option>
+				   </select>
+			</div>
+			<div class="form-group">
+				<label for="phone">vignette</label>
+				<select ngModel name="vignette" >
+					<option value="V" name="vignette">Valide</option>
+					<option value="F" name="vignette">expiré</option>
+				   </select>
+			</div><div class="form-group">
+				<label >secteur</label>
+				<select ngModel name="secteur" >
+					<option value="1" name="secteur">secteur 1</option>
+					<option value="2" name="secteur">secteur 2</option>
+					<option value="3" name="secteur">secteur 3</option>
+				   </select>
+			</div>
+			<div class="modal-footer">
+			   <button type="button" id="add-Car-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			   <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Add Car</button>
+			</div>
+			</form>
+		 </div>
+	  </div>
+	</div>
+	</div>

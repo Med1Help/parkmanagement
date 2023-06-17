@@ -12,16 +12,20 @@ export class ManagerService{
     private options : {};
     private httpParams: HttpParamsOptions;
     private secteur : string | null;
+    private role : string | null;
     constructor(private http: HttpClient){
         if(sessionStorage.getItem("secteur") == null){
             this.secteur = "";
+            this.role = "";
         }else{
             this.secteur = sessionStorage.getItem("secteur");
+            this.role = sessionStorage.getItem("role");
         }
         console.log("thisis the sec from app component: "+this.secteur );
         this.headers = new HttpHeaders({
             'Content-Type'                  : 'application/json',
             'secteur'                       : this.secteur!,
+            'role'                       : this.role!,
             'Access-Control-Allow-Origin'   : 'http://localhost:4200',
             'Access-Control-Allow-Credentials' : "true",
 

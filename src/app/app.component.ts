@@ -14,12 +14,16 @@ export class AppComponent implements OnInit{
   public managers : Manager[] | undefined;
   public editManager : Manager | undefined;
   public title = ""; 
+  public getManagersRight : boolean = false;
 
   constructor (private managerService : ManagerService , private router:Router){}
   
   ngOnInit(): void {
-    this.getManagers();
-
+     if(sessionStorage.getItem('role') == 'admin'){
+      this.getManagersRight = true;
+      this.getManagers();
+      console.log("should get managers")
+     }
   }
 
   public hasRoute(route:string){

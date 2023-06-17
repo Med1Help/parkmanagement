@@ -8,8 +8,9 @@ import {myObject} from '../myObject'
 })
 export class DriverService{
     private apiServerUrl = 'http://localhost:3001';
-    private headers : HttpHeaders;
+    
     private secteur : string | null;
+    private headers : HttpHeaders;
     constructor(private http: HttpClient){
         if(sessionStorage.getItem("secteur") == null){
             this.secteur = "";

@@ -33,8 +33,8 @@ export class CarService{
     // public getCar(myObj : myObject): Observable<Car[]>{
     //     return this.http.post<Car[]>(this.apiServerUrl+'/car/car',myObj);
     // }
-    public addCar(Car : Car): Observable<Car>{
-        return this.http.post<Car>(this.apiServerUrl+'/car/add_car',Car,{headers:this.headers});
+    public addCar(Car : Car): Observable<any>{
+        return this.http.post(this.apiServerUrl+'/car/add_car',Car,{headers:this.headers,responseType: 'text'});
     }
     public updateCar(myObj : myObject): Observable<any>{
         return this.http.post(this.apiServerUrl+'/car/update_car',myObj,{responseType: 'text'});

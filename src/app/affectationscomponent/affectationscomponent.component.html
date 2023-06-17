@@ -52,11 +52,12 @@
                             <div class="align-items-center row">
                                 <div class="col-lg-5">
                                     <h5 class="fs-19 mb-0">
-                                        <a class="primary-link" href="">{{affectation.id}}</a>
+                                        <a class="primary-link" href="">Affectation {{affectation.id}}</a>
                                     </h5>
                                     <div class="candidate-list-content mt-3 mt-lg-0">
-                                        <p class="text-muted mb-2">{{affectation.id_car}}</p>
-                                        <p class="text-muted mb-2">{{affectation.id_rider}}</p>
+                                        <p class="text-muted mb-2" *ngFor="let car of Cars"><b *ngIf="car.id == affectation.id_car ">MAtricule : &nbsp;{{car.matricule}}</b></p>
+                                        <p class="text-muted mb-2" *ngFor="let driver of drivers"><b *ngIf="driver.id == affectation.id_rider ">Driver : &nbsp;{{driver.name}}</b></p>
+                                        <b class="text-muted mb-2">Secteur {{affectation.secteur}}</b>
                                         <ul class="list-inline mb-0 text-muted">
                                             <li class="list-inline-item"><i class="mdi mdi-map-marker"></i> {{affectation.date_debut}}</li>
                                             ---
